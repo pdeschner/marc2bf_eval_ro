@@ -1,0 +1,71 @@
+<br /><h5 style="float:right"><%= link_to 'New Comment', new_conversion_issue_path(:conversion_id => @conversion.id) %></h5><br />
+
+<h5><b>Local System ID</b></h5>
+<div class="panel panel-default">
+  <div class="panel-body">
+    <%= "#{@conversion.local_system_id}" %>
+  </div>
+</div>
+
+<h5><b>Title</b></h5>
+<div class="panel panel-default">
+  <div class="panel-body">
+    <%= "#{@conversion.title}" %>
+  </div>
+</div>
+
+<h5><b>Converter Version</b></h5>
+<div class="panel panel-default">
+  <div class="panel-body">
+    <%= "#{@conversion.converter_version}" %>
+  </div>
+</div>
+
+<h5><b>MARC/XML</b></h5>
+<div class="panel panel-default">
+<div class="panel-body" style="height:400px;overflow-y:scroll;width:100%;">
+<pre style="background-color:white;border-style:hidden" class="prettyprint linenums">
+<%= "#{@conversion.marc}" %>
+</pre>
+</div>
+</div>
+
+<h5><b>BIBFRAME RDF/XML</b></h5>
+<div class="panel panel-default">
+<div class="panel-body" style="height:400px;overflow-y:scroll;width:100%;">
+<pre style="background-color:white;border-style:hidden" class="prettyprint linenums">
+<%= "#{@conversion.bf}" %>
+</pre>
+</div>
+</div>
+   
+<div class="panel panel-default">
+
+  <table class="table">  
+    <thead>
+      <tr>
+        <th style="padding:10px">Comment Tag</th>
+        <th style="padding:10px">Comment</th>
+        <th colspan="2"></th>
+      </tr>
+    </thead>
+
+    <% i = 0 %>
+    <% ConversionIssue.where("conversion_id = #{@conversion.id}").find_each do |conv_issue| %>
+      <% i += 1 %>
+      <tr>
+        <td style="padding:10px">
+        <% issue = Issue.find_by(id: conv_issue.issue_id) %>
+        <%= issue.issue_tag %>
+        </td>
+        <td style="padding:10px">
+          <div style="width:700px">
+            <pre><span style="font-size:12px"><%= conv_issue.comment %><span></pre>
+          </div>
+        </td>
+        <td><%= link_to 'Edit', edit_conversion_issue_path(conv_issue) %></td>
+      </tr>
+    <% end %>
+  </table>
+
+</div>

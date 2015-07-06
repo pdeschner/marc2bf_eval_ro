@@ -1,0 +1,25 @@
+<%= form_for(@evaluator) do |f| %>
+  <% if @evaluator.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@evaluator.errors.count, "error") %> prohibited this evaluator from being saved:</h2>
+
+      <ul>
+      <% @evaluator.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <br /><div class="field">
+    <%= f.label(:last_name, "Last Name") %><br>
+    <%= f.text_field :last_name, :class => "form-control-40" %>
+  </div>
+  <div class="field">
+    <%= f.label(:first_name, "First Name") %><br>
+    <%= f.text_field :first_name, :class => "form-control-40" %>
+  </div><br />
+  <div class="actions">
+    <%= f.submit :value => "Submit", :class => "btn btn-default"  %>
+  </div>
+<% end %>
