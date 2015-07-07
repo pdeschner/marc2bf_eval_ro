@@ -1,7 +1,6 @@
 <p id="notice"><%= notice %></p>
 
 <h1>Comment Tags</h1><br />
-<div style="float:right"><h5><%= link_to 'New Comment Tag', new_issue_path %></h5></div><br /><br /><br />
 
 <div class="panel panel-default">
 
@@ -9,7 +8,6 @@
     <thead>
       <tr>
         <th style="padding:10px">Comment Tag</th>
-        <th colspan="2"></th>
       </tr>
     </thead>
 
@@ -17,7 +15,6 @@
       <% @issues.each do |issue| %>
         <tr>
           <td style="padding:10px"><%= issue.issue_tag %></td>
-          <td style="padding:10px"><%= link_to 'Edit', edit_issue_path(issue) %></td>
         </tr>
       <% end %>
     </tbody>
