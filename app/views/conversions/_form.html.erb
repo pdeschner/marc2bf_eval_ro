@@ -1,4 +1,4 @@
-<br /><h5 style="float:right"><%= link_to 'New Comment', new_conversion_issue_path(:conversion_id => @conversion.id) %></h5><br />
+<br />
 
 <h5><b>Local System ID</b></h5>
 <div class="panel panel-default">
@@ -63,7 +63,6 @@
             <pre><span style="font-size:12px"><%= conv_issue.comment %><span></pre>
           </div>
         </td>
-        <td><%= link_to 'Edit', edit_conversion_issue_path(conv_issue) %></td>
       </tr>
     <% end %>
   </table>
