@@ -9,6 +9,7 @@ class ConversionsController < ApplicationController
   def index
     # @converions = Conversion.search(params[:search])
     @conversions = Conversion.all
+		@conversions = Conversion.order(sort_column + " " + sort_direction)
   end
 
   # GET /conversions/1
