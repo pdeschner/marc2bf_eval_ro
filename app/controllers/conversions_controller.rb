@@ -2,6 +2,8 @@ class ConversionsController < ApplicationController
 
   before_action :set_conversion, only: [:show, :edit, :update, :destroy]
 
+  helper_method :sort_column, :sort_direction
+
   # GET /conversions
   # GET /conversions.json
   def index
@@ -88,4 +90,14 @@ class ConversionsController < ApplicationController
     def conversion_params
       params.require(:conversion).permit(:marc, :bf)
     end
+    
+    def sort_column
+      # Check for valid values to prevent SQL injection
+      %w[conversions.converter_version].include?(params[:sort]) ? params[:sort] : "conversions.converter_version"
+    end
+
+    def sort_direction
+      # Check for valid values to prevent SQL injection
+      %w[asc desc].include?(params[:direction]) ? params[:direction] : "asc"
+    end   
 end
